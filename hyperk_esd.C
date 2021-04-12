@@ -1,5 +1,6 @@
 // Based on alice_esd.C from ROOT tutorials
 // Modified for hyperk by Alex Finch
+#include "fitqun_def.h"
 #ifdef  FITQUNEXISTS
 fitQunDisplay fiTQun;
 #endif
@@ -84,8 +85,8 @@ void hyperk_esd()
 	fi.fIniDir    = StrDup(CurrentDirectory);
 	#ifdef  FITQUNEXISTS
 	FITQUN=kTRUE;
-	else
-		FITQUN=kFALSE;
+	#else
+	FITQUN=kFALSE;
 	#endif
 	if(FITQUN)
 	{

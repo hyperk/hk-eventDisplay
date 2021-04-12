@@ -17,7 +17,7 @@ public:                     // make them public for shorter code
 	Int_t     fNFields;      // number of fields
 	TArrayF  *fValues;
 	bool     *fIsInt;
-	TString  fRowNames[100];
+	TString  fRowNames[1000];
 	TString  *fLabels;
 	Bool_t    fExpand;
 	

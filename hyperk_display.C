@@ -8,16 +8,15 @@
 	Long_t* size;
 	Long_t* flags;
 	Long_t* modtime;
-	if(!gSystem->GetPathInfo("../hk-fitqun",id,size,flags,modtime))
+	TString fitqun_dir = gSystem->Getenv("FITQUN_ROOT");
+	ofstream fitqundef_file("fitqun_def.h");
+	if(!gSystem->GetPathInfo(fitqun_dir.Data(),id,size,flags,modtime))
 		{
-			#define FITQUNEXISTS
+			fitqundef_file << "#define FITQUNEXISTS" << endl;
 			gROOT->ProcessLine(".L fitQunDisplay.C+");
 		}
-		else
-		{
-			#undef FITQUNEXISTS
-		}
-			
+	fitqundef_file.close();
+
 	gROOT->ProcessLine(".L Picker.C+");
 	gROOT->ProcessLine(".x hyperk_esd.C");
 }

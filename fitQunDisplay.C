@@ -27,6 +27,7 @@
 #include <TH2.h>
 #include <TStyle.h>
 #include "THKGamma.h"
+#include "THKLine.h"
 #include <iostream>
 #include "TEveVector.h"
 #include <TGLViewer.h>

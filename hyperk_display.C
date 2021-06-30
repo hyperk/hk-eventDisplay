@@ -4,6 +4,11 @@
 	gSystem->AddIncludePath(" -I$WCSIMDIR/include/");
 	gROOT->ProcessLine(".L hyperk_esd_html_summary.C+");
 	gROOT->ProcessLine(".L THKGamma.C+");
+	gROOT->ProcessLine(".L THKMCTrack.C+");
+	gROOT->ProcessLine(".L THKCerenkov.C+");
+	gROOT->ProcessLine(".L THKCerenkov2D.C+");
+	gROOT->ProcessLine(".L THKLine.C+");
+
 	Long_t* id;
 	Long_t* size;
 	Long_t* flags;
@@ -19,5 +24,6 @@
 
 	gROOT->ProcessLine(".L Picker.C+");
 	gROOT->ProcessLine(".x hyperk_esd.C");
+
 }
 

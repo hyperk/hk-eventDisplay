@@ -16,7 +16,10 @@ public:                     // make them public for shorter code
 	Int_t     fNValues;      // number of values
 	Int_t     fNFields;      // number of fields
 	TArrayF  *fValues;
+	std::vector< std::vector<TString> > fStringValues;
+
 	bool     *fIsInt;
+	bool     *fIsString;
 	TString  fRowNames[1000];
 	TString  *fLabels;
 	Bool_t    fExpand;
@@ -35,6 +38,7 @@ public:
 	void     IsInteger(Int_t col){fIsInt[col]=kTRUE;}
 	void     SetLabel(Int_t col, const char *label) { fLabels[col] = label; }
 	void     SetValue(Int_t col, Int_t row, Float_t val) ;
+	void     SetStringValue(Int_t col, Int_t row, TString val) ;
 	void     SetRowName(Int_t row, TString val) { fRowNames[row]=val ;
 	    fNValues=std::max(fNValues,row);
 	}

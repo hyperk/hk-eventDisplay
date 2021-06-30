@@ -1,4 +1,3 @@
-
 #include "hyperk_esd_html_summary.h"
 #include "WCSimRootEvent.hh"
 //==============================================================================
@@ -13,10 +12,12 @@ fName(name),  fNFields(nfields), fExpand(exp)
 	fNValues=0;
 	fValues = new TArrayF[fNFields];
 	fIsInt  = new bool[fNFields];
+	fIsString  = new bool[fNFields];
+
 	for (int ix=0;ix<fNFields;ix++)
 	{
-		//fValues[ix].Set(nvals);
                 fIsInt[ix]=kFALSE;
+                fIsString[ix]=kFALSE;
 	}
 	fLabels = new TString[fNFields];
 }
@@ -28,12 +29,21 @@ void     HtmlObjTable::SetValue(Int_t col, Int_t row, Float_t val)
         }
 	fValues[col].SetAt(val, row); 
 }
+void     HtmlObjTable::SetStringValue(Int_t col, Int_t row, TString val) 
+{
 
+	if((unsigned int) (row+1)>fStringValues.size())
+	{
+		fStringValues.resize(row+1);
+		fStringValues[row].resize(fNFields);
+    }
+	fStringValues[row][col]=val; 
+	fIsString[col]=kTRUE;
+}
 //______________________________________________________________________________
 HtmlObjTable::~HtmlObjTable()
 {
 	// Destructor.
-	
 	delete [] fValues;
 	delete [] fIsInt;
 	delete [] fLabels;
@@ -98,6 +108,7 @@ void HtmlObjTable::BuildTable()
 	// Build part of table with values.
 	
 	for (int i = 0; i < (fNValues+1); i++) {
+
 		if (i%2)
 			fHtml += "<tr bgcolor=e0e0ff>";
 		else
@@ -114,15 +125,28 @@ void HtmlObjTable::BuildTable()
 		fHtml += Form("<td> %s", fRowNames[i].Data());
 		fHtml += "</td>";
 		for (int j = 1; j < fNFields; j++) {
+
 			fHtml += "<td width=";
 			fHtml += Form("%d%%", 100/fNFields);
 			fHtml += " align=\"center\"";
 			fHtml += ">";
-			if(fIsInt[j])
+			if(fIsInt[j]){
 				fHtml += Form("%2i", (int)fValues[j][i]);
+
+			}
+			else if (fIsString[j])
+			     fHtml += fStringValues[i][j]; // note reversed row, column order of indices
 			else
-				fHtml += Form("%1.2f", fValues[j][i]);
+			{
+
+
+				if(fValues[j].GetSize()>i)
+					fHtml += Form("%1.2f", fValues[j][i]);
+				else
+					fHtml += "-";
+			}
 			fHtml += "</td>";
+
 		}
 		fHtml += "</tr> ";
 	}

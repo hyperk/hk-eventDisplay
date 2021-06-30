@@ -25,6 +25,10 @@
 #include "hyperk_esd_html_summary.h"
 
 #include "THKGamma.h"
+#include "THKMCTrack.h"
+#include "THKCerenkov.h"
+#include "THKCerenkov2D.h"
+#include "THKLine.h"
 
 // Header file for the classes stored in the TTree if any.
 

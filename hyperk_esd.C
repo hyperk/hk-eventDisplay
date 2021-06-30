@@ -187,7 +187,7 @@ void hyperk_esd()
   Initialise the unrolled geometry scene and view
 */
 	gEve->GetBrowser()->GetTabRight()->SetTab(0);
-	UnrolledScene = gEve->SpawnNewScene("Unrolled Event Scene");
+	UnrolledScene = gEve->SpawnNewScene("Unrolled Event");
 	flatGeometryScene = gEve->SpawnNewScene("Unrolled Geometry");
 	UnrolledView = New2dView("Unrolled View",TGLViewer::kCameraOrthoXnOY,UnrolledScene);   	
 	flatGeometryScene->AddElement(FlatGeometry);
@@ -857,7 +857,6 @@ Find the maximum values of X,Y,Z
 // Medium: medium0
 	Int_t numed   = 0;
   // medium number
-/
 	auto worldMedium = new TGeoMedium("worldMedium", numed,worldMaterial);
 //, par);
 	float dx = 2*maxX;

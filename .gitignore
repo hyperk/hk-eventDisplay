@@ -1,3 +1,6 @@
 *_C.d
 *_C.so
 fitqun_def.h
+*.pcm
+devel/
+files/
